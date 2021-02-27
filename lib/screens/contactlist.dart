@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto2/screens/formcontact.dart';
 
 class ContactList extends StatelessWidget {
 
@@ -24,7 +25,7 @@ class ContactList extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(builder: (ctx) {
-                  return null;
+                  return FormContact();
                 })
             );
           },
