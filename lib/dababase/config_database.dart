@@ -13,7 +13,7 @@ Future<Database> createDatabase() {
         version: 1,
         //onDowngrade: (banco,anterior,atual){ banco.execute('delete CONTACT'); },
         //onUpgrade: (banco,anterior,atual){ banco.execute('delete CONTACT'); },
-        onDowngrade:onDatabaseDowngradeDelete,
+        //onDowngrade:onDatabaseDowngradeDelete,
         //onUpgrade: (banco,anterior,atual){ banco.execute('drop table CONTACT'); },
         onCreate: (banco,versao){
           banco.execute("CREATE TABLE CONTACT ("

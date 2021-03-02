@@ -11,17 +11,20 @@ class TextForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-      child: TextField(
-        controller: _controlador,
-        style: TextStyle(fontSize: 24.0),
-        decoration: InputDecoration(
-          labelText: _rotulo,
-          hintText: _dica,
-          icon: icone != null ? Icon(icone) : null,
+    return Visibility(
+      visible: _rotulo == 'Id' ? false : true,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: TextField(
+          controller: _controlador,
+          style: TextStyle(fontSize: 24.0),
+          decoration: InputDecoration(
+            labelText: _rotulo,
+            hintText: _dica,
+            icon: icone != null ? Icon(icone) : null,
+          ),
+          keyboardType: teclado != null ? teclado : TextInputType.number,
         ),
-        keyboardType: teclado != null ? teclado : TextInputType.number,
       ),
     );
   }
