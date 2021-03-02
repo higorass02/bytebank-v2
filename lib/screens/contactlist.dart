@@ -52,7 +52,7 @@ class _ContactListState extends State<ContactList> {
                 itemCount: contacts.length,
                 itemBuilder: (BuildContext ctx,int indice) {
                   Contact listContato = contacts[indice];
-                  return MyCard(listContato.nome,listContato.numero.toString());
+                  return MyCard(listContato.nome,listContato.numero.toString(),id: listContato.id);
                 },
               );
               break;
@@ -73,11 +73,12 @@ class _ContactListState extends State<ContactList> {
                 )
             );
             futuro.then((contactReturn) {
+              //debugPrint(contactReturn.toString());
               if(contactReturn != null) {
                 debugPrint('Transferência recebida no then do Future $contactReturn');
                 setState(() =>
                 {
-                  debugPrint('recarregar!')
+                  debugPrint('recarregar! 0')
                   //listContatos.add(contactReturn)
                 }
                 );

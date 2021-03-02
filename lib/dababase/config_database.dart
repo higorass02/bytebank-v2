@@ -38,6 +38,18 @@ Future<int> saveContact (Contact contact){
   });
 }
 
+Future<int> editContact (Contact contact){
+  return createDatabase().then((banco){
+    Map<String, dynamic> map = Map();
+
+    map['id'] = contact.id;
+    map['nome'] = contact.nome;
+    map['numero_conta'] = contact.numero;
+
+    return banco.update('CONTACT',map,where: "id = 1");
+  });
+}
+
 Future<List<Contact>> findAllContact (){
    return createDatabase().then((banco){
 
@@ -52,5 +64,27 @@ Future<List<Contact>> findAllContact (){
 
        return contacts;
      });
+  });
+}
+
+Future<List<Contact>> findByContact (id){
+  return createDatabase().then((banco){
+    //debugPrint(id);
+    return banco.query(
+        'CONTACT',
+        where: "id = 1",
+        //whereArgs: [id],
+        orderBy: '1 asc'
+    ).then((rows){
+      List<Contact> contacts = List();
+
+      for(Map<String,dynamic> row in rows){
+        //debugPrint(row.toString());
+        Contact contact = Contact(row['nome'],row['numero_conta'],id: row['id']);
+        contacts.add(contact);
+      }
+
+      return contacts;
+    });
   });
 }
