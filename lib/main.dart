@@ -8,7 +8,6 @@ import 'package:projeto2/components/mycard.dart';
 
 void main() {
   runApp(BayteBankApp());
-  saveContact(Contact('jaozim 3',1234)).then((id)=> debugPrint('ID gerado: $id'));
   //findAllContact().then((listaContato) { for (Contact C1 in listaContato) { MyCard(C1.nome.toString(),C1.numero.toString()); } });
 }
 

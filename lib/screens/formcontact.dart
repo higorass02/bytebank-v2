@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto2/components/textform.dart';
+import 'package:projeto2/dababase/config_database.dart';
 import 'package:projeto2/models/contact.dart';
 
 class FormContact extends StatefulWidget {
@@ -50,6 +51,7 @@ class _FormContactState extends State<FormContact> {
                         String	nome	=	controladorDoCampoName.text;
                         int	numero	=	int.tryParse(controladorDoNumeroConta.text);
                         Contact	novoContato	=	Contact(nome,	numero);
+                        saveContact(Contact(novoContato.nome,novoContato.numero)).then((id)=> debugPrint('Contato Cadastrado: $id'));
                         Navigator.pop(context,	novoContato);
                       },
                     ),

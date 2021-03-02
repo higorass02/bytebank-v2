@@ -6,14 +6,8 @@ import 'models/contact.dart';
 
 void main() {
   runApp(BytebankApp());
-  findAllContacts().then((listaDeContatos) {
-    if (listaDeContatos.isEmpty) {
-      debugPrint('Nenhum contato cadastrado...');
-    } else {
-      debugPrint(listaDeContatos.toString());
-    }
+  saveContact(Contact('Cicrano do Sal',6677));
 
-  });
 }
 
 class BytebankApp extends StatelessWidget {

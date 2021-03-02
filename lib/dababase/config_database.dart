@@ -11,6 +11,8 @@ Future<Database> createDatabase() {
       return openDatabase(
         caminhoDoDiretorioDoDB,
         version: 1,
+        //onDowngrade: (banco,anterior,atual){ banco.execute('delete CONTACT'); },
+        //onUpgrade: (banco,anterior,atual){ banco.execute('delete CONTACT'); },
         onDowngrade:onDatabaseDowngradeDelete,
         //onUpgrade: (banco,anterior,atual){ banco.execute('drop table CONTACT'); },
         onCreate: (banco,versao){
@@ -39,7 +41,7 @@ Future<int> saveContact (Contact contact){
 Future<List<Contact>> findAllContact (){
    return createDatabase().then((banco){
 
-      return banco.query('CONTACT').then((rows){
+      return banco.query('CONTACT',orderBy: '1 asc').then((rows){
        List<Contact> contacts = List();
 
        for(Map<String,dynamic> row in rows){

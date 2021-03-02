@@ -12,8 +12,8 @@ class MyCard extends StatelessWidget {
     return Container(
       child: Card(
         child: ListTile(
-          title: Text(_rotulo),
-          subtitle: Text(_dica),
+          title: Text(_rotulo,style: TextStyle(fontSize: 24.0)),
+          subtitle: Text(_dica,style: TextStyle(fontSize: 16.0),),
           leading: icone != null ? Icon(icone) : null,
         ),
       ),

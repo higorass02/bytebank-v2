@@ -21,16 +21,43 @@ class _ContactListState extends State<ContactList> {
         title: Text('Cantacts'),
       ),
       body: FutureBuilder(
+        // future: Future.delayed(Duration(seconds: 3)).then((value) => findAllContact()),
         future: findAllContact(),
         builder: (context,snapshot){
+
           List<Contact> contacts = snapshot.data;
-          return ListView.builder(
-            itemCount: contacts.length,
-            itemBuilder: (BuildContext ctx,int indice) {
-              Contact listContato = contacts[indice];
-              return MyCard(listContato.nome,listContato.numero.toString());
-            },
-          );
+          switch(snapshot.connectionState){
+
+            case ConnectionState.none:
+              // Ainda nao foi disparado nenhuma chamada assincrona
+              break;
+            case ConnectionState.waiting:
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                    Text('Loading...')
+                  ],
+                ),
+              );
+              break;
+            case ConnectionState.active:
+              // Baixar um arquivo
+              // carregar barra de progresso
+              // processamento ainda nao finalizado
+              break;
+            case ConnectionState.done:
+              return ListView.builder(
+                itemCount: contacts.length,
+                itemBuilder: (BuildContext ctx,int indice) {
+                  Contact listContato = contacts[indice];
+                  return MyCard(listContato.nome,listContato.numero.toString());
+                },
+              );
+              break;
+          }
+          return null;
         },
       ),
       floatingActionButton: FloatingActionButton(
@@ -50,7 +77,8 @@ class _ContactListState extends State<ContactList> {
                 debugPrint('Transferência recebida no then do Future $contactReturn');
                 setState(() =>
                 {
-                  listContatos.add(contactReturn)
+                  debugPrint('recarregar!')
+                  //listContatos.add(contactReturn)
                 }
                 );
               }
