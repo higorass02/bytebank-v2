@@ -1,0 +1,63 @@
+import 'package:bytebank2/models/contact.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+
+Future<Database> createDatabase() {
+  return getDatabasesPath().then((diretorioDosBancosDeDados) {
+    String caminhoDoArquivoDoBD = join(diretorioDosBancosDeDados, 'bytebank.db');
+
+    return openDatabase(
+      caminhoDoArquivoDoBD,
+      version: 1,
+      onCreate: (banco, versao) {
+        banco.execute('CREATE TABLE contact ('
+            '  id INTEGER PRIMARY KEY, '
+            '  name TEXT, '
+            '  account_number INTEGER'
+            ')');
+      }
+    );
+  });
+}
+
+Future<int> saveContact(Contact contact) {
+  return createDatabase().then((banco) {
+    Map<String, dynamic> map = Map();
+    map['name'] = contact.fullName;
+    map['account_number'] = contact.accountNumber;
+
+    return banco.insert('contact', map);
+  });
+}
+
+Future<List<Contact>> findAllContacts() {
+  return createDatabase().then((banco) {
+    return banco.query('contact').then((rows) {
+      List<Contact> contacts = List();
+
+      for (Map<String, dynamic> row in rows) {
+        Contact contact = Contact(row['name'], row['account_number'], id: row['id']);
+        contacts.add(contact);
+      }
+
+      return contacts;
+    });
+
+  });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

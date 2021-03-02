@@ -1,0 +1,60 @@
+import 'package:bytebank2/models/contact.dart';
+import 'package:flutter/material.dart';
+
+class ContactForm extends StatelessWidget {
+  TextEditingController _controllerName = TextEditingController();
+  TextEditingController _controllerAccountNumber = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('New contact'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              TextField(
+                controller: _controllerName,
+                decoration: InputDecoration(
+                  labelText: 'Full name'
+                ),
+                style: TextStyle(
+                  fontSize: 24.0
+                ),
+              ),
+              TextField(
+                controller: _controllerAccountNumber,
+                decoration: InputDecoration(
+                    labelText: 'Account number'
+                ),
+                keyboardType: TextInputType.number,
+                style: TextStyle(
+                    fontSize: 24.0
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: SizedBox(
+                  width: double.maxFinite,
+                  child: RaisedButton(
+                    child: Text('Create'),
+                    onPressed: () {
+                      String name = _controllerName.text;
+                      int accountNumber = int.tryParse(_controllerAccountNumber.text);
+
+                      Contact newContact = Contact(name, accountNumber);
+                      Navigator.pop(context, newContact);
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:projeto2/components/textform.dart';
+import 'package:projeto2/models/contact.dart';
 
-class FormContact extends StatelessWidget {
+class FormContact extends StatefulWidget {
 
+  @override
+  _FormContactState createState() => _FormContactState();
+}
+
+class _FormContactState extends State<FormContact> {
   TextEditingController controladorDoCampoName = TextEditingController();
-  TextEditingController controladorDoCampoValor  = TextEditingController();
+
+  TextEditingController controladorDoNumeroConta  = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +33,7 @@ class FormContact extends StatelessWidget {
                   icone: Icons.account_circle,
                 ),
                 TextForm(
-                  controladorDoCampoValor,
+                  controladorDoNumeroConta,
                   'Numero da conta',
                   '0000',
                   icone: Icons.call,
@@ -39,7 +46,12 @@ class FormContact extends StatelessWidget {
                     width: double.maxFinite,
                     child: RaisedButton(
                       child: Text('Cadastrar'),
-                      onPressed: () => debugPrint('cadastrar novo contato'),
+                      onPressed: () {
+                        String	nome	=	controladorDoCampoName.text;
+                        int	numero	=	int.tryParse(controladorDoNumeroConta.text);
+                        Contact	novoContato	=	Contact(nome,	numero);
+                        Navigator.pop(context,	novoContato);
+                      },
                     ),
                   ),
                 ),

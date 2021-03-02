@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:projeto2/dababase/config_database.dart';
 import 'package:projeto2/screens/dasborad.dart';
+import 'package:projeto2/dababase/config_database.dart';
+import 'package:projeto2/models/contact.dart';
 import 'package:projeto2/screens/contactlist.dart';
-import 'package:projeto2/screens/formcontact.dart';
+import 'package:projeto2/components/mycard.dart';
 
 void main() {
-  runApp(bayteBankApp());
+  runApp(BayteBankApp());
+  saveContact(Contact('jaozim 3',1234)).then((id)=> debugPrint('ID gerado: $id'));
+  //findAllContact().then((listaContato) { for (Contact C1 in listaContato) { MyCard(C1.nome.toString(),C1.numero.toString()); } });
 }
 
-class bayteBankApp extends StatelessWidget {
+class BayteBankApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
