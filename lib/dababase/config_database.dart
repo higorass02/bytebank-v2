@@ -46,7 +46,7 @@ Future<int> editContact (Contact contact){
     map['nome'] = contact.nome;
     map['numero_conta'] = contact.numero;
 
-    return banco.update('CONTACT',map,where: "id = 1");
+    return banco.update('CONTACT',map,where: "id = ?",whereArgs: [contact.id]);
   });
 }
 
@@ -72,8 +72,8 @@ Future<List<Contact>> findByContact (id){
     //debugPrint(id);
     return banco.query(
         'CONTACT',
-        where: "id = 1",
-        //whereArgs: [id],
+        where: "id = ?",
+        whereArgs: [id],
         orderBy: '1 asc'
     ).then((rows){
       List<Contact> contacts = List();

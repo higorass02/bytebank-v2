@@ -69,7 +69,9 @@ class _FormContactState extends State<FormContact> {
 
 class FormContactEdit extends StatefulWidget {
 
-  FormContactEdit(id);
+  int id;
+
+  FormContactEdit(this.id);
 
   @override
   _FormContactEditState createState() => _FormContactEditState();
@@ -82,8 +84,6 @@ class _FormContactEditState extends State<FormContactEdit> {
 
   TextEditingController controladorId  = TextEditingController();
 
-  int id;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,9 +91,9 @@ class _FormContactEditState extends State<FormContactEdit> {
         title: Text('Editar Contato'),
       ),
       body: FutureBuilder(
-        future: findByContact(id),
+        future: findByContact(widget.id),
         builder: (context, snapshot) {
-
+          debugPrint(context.toString());
           List<Contact> contacts = snapshot.data;
 
           switch(snapshot.connectionState){
