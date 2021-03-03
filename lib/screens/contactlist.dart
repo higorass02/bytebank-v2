@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto2/components/mycard.dart';
+import 'package:projeto2/dababase/dao/contact_dao.dart';
 import 'package:projeto2/models/contact.dart';
 import 'package:projeto2/screens/formcontact.dart';
-import 'package:projeto2/dababase/config_database.dart';
 
 class ContactList extends StatefulWidget {
 
@@ -14,15 +14,17 @@ class _ContactListState extends State<ContactList> {
   Contact contact ;
   List<Contact> listContatos = List();
 
+  ContactDao dao = ContactDao();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Cantacts'),
+        title: Text('Tranfer'),
       ),
       body: FutureBuilder(
         // future: Future.delayed(Duration(seconds: 3)).then((value) => findAllContact()),
-        future: findAllContact(),
+        future: dao.findAllContact(),
         builder: (context,snapshot){
 
           List<Contact> contacts = snapshot.data;

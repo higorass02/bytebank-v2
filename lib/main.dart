@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projeto2/dababase/config_database.dart';
 import 'package:projeto2/screens/dasborad.dart';
-import 'package:projeto2/dababase/config_database.dart';
-import 'package:projeto2/models/contact.dart';
-import 'package:projeto2/screens/contactlist.dart';
-import 'package:projeto2/components/mycard.dart';
 
 void main() {
   runApp(BayteBankApp());

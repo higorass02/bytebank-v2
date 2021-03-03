@@ -3,10 +3,10 @@ import 'package:projeto2/models/contact.dart';
 import 'package:projeto2/screens/formcontact.dart';
 
 class MyCard extends StatefulWidget {
-  String _rotulo;
-  String _dica;
-  IconData icone;
-  int id;
+  final String _rotulo;
+  final String _dica;
+  final IconData icone;
+  final int id;
 
   MyCard(this._rotulo, this._dica, {this.icone, this.id});
 
@@ -24,34 +24,35 @@ class _MyCardState extends State<MyCard> {
           subtitle: Text(widget._dica,style: TextStyle(fontSize: 16.0),),
           leading: widget.icone != null ? Icon(widget.icone) : null,
           trailing: InkWell(
-            child: Icon(Icons.edit),
-            onTap: (){
-              Future<Contact> contact = Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (ctx) {
-                        if(widget.id != null){
-                          return FormContactEdit(widget.id);
-                        }else{
-                          return FormContact();
-                        }
-                      }
-                  )
-              );
-              contact.then((contactReturn) {
-                debugPrint(contactReturn.toString());
-                if(contactReturn != null) {
-                  //debugPrint('Transferência recebida no then do Future $contactReturn');
-                  setState(() =>
-                  {
-                    debugPrint('recarregar! 0'),
-                    //listContatos.add(contactReturn)
-                  }
-                  );
-                }
-              });
-            },
+            child: Icon(Icons.drive_file_rename_outline),
           ),
+          onTap: (){
+            Future<Contact> contact = Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (ctx) {
+                      if(widget.id != null){
+                        debugPrint(widget.id.toString());
+                        return FormContactEdit(widget.id);
+                      }else{
+                        return FormContact();
+                      }
+                    }
+                )
+            );
+            contact.then((contactReturn) {
+              debugPrint(contactReturn.toString());
+              if(contactReturn != null) {
+                //debugPrint('Transferência recebida no then do Future $contactReturn');
+                setState(() =>
+                {
+                  debugPrint('recarregar! 0'),
+                  //listContatos.add(contactReturn)
+                }
+                );
+              }
+            });
+          },
         ),
       ),
     );

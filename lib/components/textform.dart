@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class TextForm extends StatelessWidget {
-  TextEditingController _controlador;
-  String _rotulo;
-  String _dica;
-  IconData icone;
-  TextInputType teclado;
+  final TextEditingController _controlador;
+  final String _rotulo;
+  final String _dica;
+  final IconData icone;
+  final TextInputType teclado;
 
   TextForm(this._controlador, this._rotulo, this._dica, {this.icone, this.teclado});
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto2/components/textform.dart';
-import 'package:projeto2/dababase/config_database.dart';
+import 'package:projeto2/dababase/dao/contact_dao.dart';
 import 'package:projeto2/models/contact.dart';
 import 'package:projeto2/screens/contactlist.dart';
 
@@ -13,6 +13,8 @@ class _FormContactState extends State<FormContact> {
   TextEditingController controladorDoCampoName = TextEditingController();
 
   TextEditingController controladorDoNumeroConta  = TextEditingController();
+
+  ContactDao dao = ContactDao();
 
   @override
   Widget build(BuildContext context,{idContact}) {
@@ -52,7 +54,7 @@ class _FormContactState extends State<FormContact> {
                         String	nome	=	controladorDoCampoName.text;
                         int	numero	=	int.tryParse(controladorDoNumeroConta.text);
                         Contact	novoContato	=	Contact(nome,	numero);
-                        saveContact(Contact(novoContato.nome,novoContato.numero)).then((id)=> debugPrint('Contato Cadastrado: $id'));
+                        dao.saveContact(Contact(novoContato.nome,novoContato.numero)).then((id)=> debugPrint('Contato Cadastrado: $id'));
                         Navigator.pop(context,	novoContato);
                       },
                     ),
@@ -69,7 +71,7 @@ class _FormContactState extends State<FormContact> {
 
 class FormContactEdit extends StatefulWidget {
 
-  int id;
+  final int id;
 
   FormContactEdit(this.id);
 
@@ -84,6 +86,8 @@ class _FormContactEditState extends State<FormContactEdit> {
 
   TextEditingController controladorId  = TextEditingController();
 
+  ContactDao dao = ContactDao();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,7 +95,7 @@ class _FormContactEditState extends State<FormContactEdit> {
         title: Text('Editar Contato'),
       ),
       body: FutureBuilder(
-        future: findByContact(widget.id),
+        future: dao.findByContact(widget.id),
         builder: (context, snapshot) {
           debugPrint(context.toString());
           List<Contact> contacts = snapshot.data;
@@ -147,7 +151,7 @@ class _FormContactEditState extends State<FormContactEdit> {
                               int	numero	=	int.tryParse(controladorDoNumeroConta.text);
                               int	itemid	=	int.tryParse(controladorId.text);
                               Contact	editContato	=	Contact(nome,	numero,id: itemid);
-                              editContact(Contact(editContato.nome,editContato.numero,id:editContato.id)).then((id)=> debugPrint('Contato Editado: $id'));
+                              dao.editContact(Contact(editContato.nome,editContato.numero,id:editContato.id)).then((id)=> debugPrint('Contato Editado: $id'));
                               Navigator.push(context,
                                 MaterialPageRoute(builder: (ctx) =>ContactList()),
                               );
