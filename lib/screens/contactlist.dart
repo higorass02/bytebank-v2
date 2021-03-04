@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto2/components/loading.dart';
 import 'package:projeto2/components/mycard.dart';
 import 'package:projeto2/dababase/dao/contact_dao.dart';
 import 'package:projeto2/models/contact.dart';
@@ -34,15 +35,7 @@ class _ContactListState extends State<ContactList> {
               // Ainda nao foi disparado nenhuma chamada assincrona
               break;
             case ConnectionState.waiting:
-              return Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(),
-                    Text('Loading...')
-                  ],
-                ),
-              );
+              return Loading();
               break;
             case ConnectionState.active:
               // Baixar um arquivo
@@ -59,6 +52,8 @@ class _ContactListState extends State<ContactList> {
               );
               break;
           }
+
+
           return null;
         },
       ),

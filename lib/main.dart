@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:projeto2/http/http_client.dart';
 import 'package:projeto2/screens/dasborad.dart';
 
 void main() {
   runApp(BayteBankApp());
+  findAllTransaction().then((transaction){
+    debugPrint(transaction.toString());
+  });
   //findAllContact().then((listaContato) { for (Contact C1 in listaContato) { MyCard(C1.nome.toString(),C1.numero.toString()); } });
 }
 
