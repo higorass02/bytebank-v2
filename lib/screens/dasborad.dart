@@ -33,9 +33,9 @@ class Dashborad extends StatelessWidget {
                     CardBtn('Transaction	Feed',Icons.description, onClick: () {
                       _showFeedTransaction(context);
                     }),
-                    CardBtn('Transaction	Feed',Icons.description, onClick: () {
-                      debugPrint('teste btn 3');
-                    }),
+                    // CardBtn('Transaction	Feed',Icons.description, onClick: () {
+                    //   debugPrint('teste btn 3');
+                    // }),
                   ]),
                 ],
               ),

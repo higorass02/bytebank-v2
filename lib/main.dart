@@ -7,6 +7,8 @@ void main() {
   findAllTransaction().then((transaction){
     debugPrint(transaction.toString());
   });
+
+  //saveTransaction(Transaction(1000.50,Contact('higao',1000)));
   //findAllContact().then((listaContato) { for (Contact C1 in listaContato) { MyCard(C1.nome.toString(),C1.numero.toString()); } });
 }
 

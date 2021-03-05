@@ -145,7 +145,7 @@ class _FormContactEditState extends State<FormContactEdit> {
                           height: 50,
                           width: double.maxFinite,
                           child: RaisedButton(
-                            child: Text('Cadastrar'),
+                            child: (controladorId.text == null)?Text('Cadastrar'):Text('Atualizar'),
                             onPressed: () {
                               String	nome	=	controladorDoCampoName.text;
                               int	numero	=	int.tryParse(controladorDoNumeroConta.text);

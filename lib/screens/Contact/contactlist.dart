@@ -4,6 +4,7 @@ import 'package:projeto2/components/mycard.dart';
 import 'package:projeto2/dababase/dao/contact_dao.dart';
 import 'package:projeto2/models/contact.dart';
 import 'package:projeto2/screens/formcontact.dart';
+import 'package:projeto2/screens/transaction_form.dart';
 
 class ContactList extends StatefulWidget {
 
@@ -47,7 +48,30 @@ class _ContactListState extends State<ContactList> {
                 itemCount: contacts.length,
                 itemBuilder: (BuildContext ctx,int indice) {
                   Contact listContato = contacts[indice];
-                  return MyCard(listContato.nome,listContato.numero.toString(),id: listContato.id);
+                  return InkWell(
+                    child: MyCard(listContato.nome,listContato.numero.toString(),id: listContato.id),
+                    onTap: (){
+                      Future<Contact> formularioTransaction = Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (ctx) {
+                                return TransactionForm(listContato);
+                              }
+                          )
+                      );
+                      formularioTransaction.then((contactReturn) {
+                        if(contactReturn != null) {
+                          //debugPrint('Transferência recebida no then do Future $contactReturn');
+                          setState(() =>
+                          {
+                            debugPrint('recarregar! 0'),
+                            //listContatos.add(contactReturn)
+                          }
+                          );
+                        }
+                      });
+                    },
+                  );
                 },
               );
               break;

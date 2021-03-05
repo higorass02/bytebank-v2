@@ -18,41 +18,44 @@ class _MyCardState extends State<MyCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Card(
-        child: ListTile(
-          title: Text(widget._rotulo,style: TextStyle(fontSize: 24.0)),
-          subtitle: Text(widget._dica,style: TextStyle(fontSize: 16.0),),
-          leading: widget.icone != null ? Icon(widget.icone) : null,
-          trailing: InkWell(
-            child: Icon(Icons.drive_file_rename_outline),
-          ),
-          onTap: (){
-            Future<Contact> contact = Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (ctx) {
-                      if(widget.id != null){
-                        debugPrint(widget.id.toString());
-                        return FormContactEdit(widget.id);
-                      }else{
-                        return FormContact();
-                      }
-                    }
-                )
-            );
-            contact.then((contactReturn) {
-              debugPrint(contactReturn.toString());
-              if(contactReturn != null) {
-                //debugPrint('Transferência recebida no then do Future $contactReturn');
-                setState(() =>
-                {
-                  debugPrint('recarregar! 0'),
-                  //listContatos.add(contactReturn)
-                }
+      child: InkWell(
+        child: Card(
+          child: ListTile(
+            title: Text(widget._rotulo,style: TextStyle(fontSize: 24.0)),
+            subtitle: Text(widget._dica,style: TextStyle(fontSize: 16.0),),
+            leading: widget.icone != null ? Icon(widget.icone) : null,
+            trailing: InkWell(
+              child: Icon(Icons.drive_file_rename_outline),
+              onTap: (){
+                Future<Contact> contact = Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (ctx) {
+                          if(widget.id != null){
+                            debugPrint(widget.id.toString());
+                            return FormContactEdit(widget.id);
+                          }else{
+                            return FormContact();
+                          }
+                        }
+                    )
                 );
-              }
-            });
-          },
+                contact.then((contactReturn) {
+                  debugPrint(contactReturn.toString());
+                  if(contactReturn != null) {
+                    //debugPrint('Transferência recebida no then do Future $contactReturn');
+                    setState(() =>
+                    {
+                      debugPrint('recarregar! 0'),
+                      //listContatos.add(contactReturn)
+                    }
+                    );
+                  }
+                });
+              },
+
+            ),
+          ),
         ),
       ),
     );

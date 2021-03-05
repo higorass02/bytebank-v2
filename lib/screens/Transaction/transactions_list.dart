@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto2/components/centered_message.dart';
 import 'package:projeto2/components/loading.dart';
+import 'package:projeto2/components/transactionCard.dart';
 import 'package:projeto2/http/http_client.dart';
-import 'package:projeto2/models/contact.dart';
 import 'package:projeto2/models/transaction.dart';
 
 class TransactionsList extends StatelessWidget {
@@ -39,7 +39,7 @@ class TransactionsList extends StatelessWidget {
                 return ListView.builder(
                   itemBuilder: (context, index) {
                     final Transaction transaction = transactions[index];
-                    return _transactionCard(transaction);
+                    return TransactionsCard(transaction);
                   },
                   itemCount: transactions.length,
                 );
@@ -47,7 +47,6 @@ class TransactionsList extends StatelessWidget {
 
               if(transactions.isEmpty){
                 return CenteredMessage('No transaction Found!',icon: Icons.warning);
-
               }
               break;
           }
@@ -57,32 +56,3 @@ class TransactionsList extends StatelessWidget {
     );
   }
 }
-
-class _transactionCard extends StatelessWidget {
-
-  final Transaction transaction;
-  _transactionCard(this.transaction);
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        leading: Icon(Icons.monetization_on),
-        title: Text(
-          transaction.value.toString(),
-          style: TextStyle(
-            fontSize: 24.0,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Text(
-          transaction.contact.numero.toString(),
-          style: TextStyle(
-            fontSize: 16.0,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
