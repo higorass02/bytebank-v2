@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto2/components/CardBtn.dart';
-import 'package:projeto2/screens/contactlist.dart';
-import 'package:projeto2/screens/transactions_list.dart';
+import 'package:projeto2/screens/Contact/contactlist.dart';
+import 'package:projeto2/screens/Transaction/transactions_list.dart';
 
 class Dashborad extends StatelessWidget {
 

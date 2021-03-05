@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:projeto2/components/centered_message.dart';
 import 'package:projeto2/components/loading.dart';
 import 'package:projeto2/components/transactionCard.dart';
-import 'package:projeto2/http/http_client.dart';
+import 'package:projeto2/http/Web_clients/Transaction_webClient.dart';
 import 'package:projeto2/models/transaction.dart';
 
 class TransactionsList extends StatelessWidget {
   final List<Transaction> transactions = List();
-
+  final TransactionWebClient apiTransaction = TransactionWebClient();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class TransactionsList extends StatelessWidget {
       ),
       body:FutureBuilder<List<Transaction>>(
         // future: Future.delayed(Duration(seconds: 3)).then((value) => findAllContact()),
-        future: findAllTransaction(),
+        future: apiTransaction.findAllTransaction(),
         builder: (context,snapshot){
 
           switch(snapshot.connectionState){

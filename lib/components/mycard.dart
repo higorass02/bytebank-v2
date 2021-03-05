@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto2/models/contact.dart';
-import 'package:projeto2/screens/formcontact.dart';
+import 'file:///C:/Users/Higor/Desktop/Projetos_flutterz/projeto2/lib/screens/Contact/formcontact.dart';
 
 class MyCard extends StatefulWidget {
   final String _rotulo;
@@ -32,7 +32,7 @@ class _MyCardState extends State<MyCard> {
                     MaterialPageRoute(
                         builder: (ctx) {
                           if(widget.id != null){
-                            debugPrint(widget.id.toString());
+                            //debugPrint(widget.id.toString());
                             return FormContactEdit(widget.id);
                           }else{
                             return FormContact();
@@ -41,12 +41,12 @@ class _MyCardState extends State<MyCard> {
                     )
                 );
                 contact.then((contactReturn) {
-                  debugPrint(contactReturn.toString());
+                  //debugPrint(contactReturn.toString());
                   if(contactReturn != null) {
                     //debugPrint('Transferência recebida no then do Future $contactReturn');
                     setState(() =>
                     {
-                      debugPrint('recarregar! 0'),
+                      //debugPrint('recarregar! 0'),
                       //listContatos.add(contactReturn)
                     }
                     );

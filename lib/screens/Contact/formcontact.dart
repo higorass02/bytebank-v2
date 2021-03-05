@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto2/components/textform.dart';
 import 'package:projeto2/dababase/dao/contact_dao.dart';
 import 'package:projeto2/models/contact.dart';
-import 'package:projeto2/screens/contactlist.dart';
+import 'package:projeto2/screens/Contact/contactlist.dart';
 
 class FormContact extends StatefulWidget {
   @override
@@ -54,7 +54,7 @@ class _FormContactState extends State<FormContact> {
                         String	nome	=	controladorDoCampoName.text;
                         int	numero	=	int.tryParse(controladorDoNumeroConta.text);
                         Contact	novoContato	=	Contact(nome,	numero);
-                        dao.saveContact(Contact(novoContato.nome,novoContato.numero)).then((id)=> debugPrint('Contato Cadastrado: $id'));
+                        dao.saveContact(Contact(novoContato.nome,novoContato.numero)).then((id){/*debugPrint('Contato Cadastrado: $id')*/});
                         Navigator.pop(context,	novoContato);
                       },
                     ),
@@ -97,7 +97,7 @@ class _FormContactEditState extends State<FormContactEdit> {
       body: FutureBuilder(
         future: dao.findByContact(widget.id),
         builder: (context, snapshot) {
-          debugPrint(context.toString());
+          //debugPrint(context.toString());
           List<Contact> contacts = snapshot.data;
 
           switch(snapshot.connectionState){
@@ -151,7 +151,7 @@ class _FormContactEditState extends State<FormContactEdit> {
                               int	numero	=	int.tryParse(controladorDoNumeroConta.text);
                               int	itemid	=	int.tryParse(controladorId.text);
                               Contact	editContato	=	Contact(nome,	numero,id: itemid);
-                              dao.editContact(Contact(editContato.nome,editContato.numero,id:editContato.id)).then((id)=> debugPrint('Contato Editado: $id'));
+                              dao.editContact(Contact(editContato.nome,editContato.numero,id:editContato.id)).then((id){/*debugPrint('Contato Editado: $id')*/});
                               Navigator.push(context,
                                 MaterialPageRoute(builder: (ctx) =>ContactList()),
                               );

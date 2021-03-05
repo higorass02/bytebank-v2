@@ -3,8 +3,8 @@ import 'package:projeto2/components/loading.dart';
 import 'package:projeto2/components/mycard.dart';
 import 'package:projeto2/dababase/dao/contact_dao.dart';
 import 'package:projeto2/models/contact.dart';
-import 'package:projeto2/screens/formcontact.dart';
-import 'package:projeto2/screens/transaction_form.dart';
+import 'package:projeto2/screens/Contact/formcontact.dart';
+import 'package:projeto2/screens/Transaction/transaction_form.dart';
 
 class ContactList extends StatefulWidget {
 
@@ -64,7 +64,7 @@ class _ContactListState extends State<ContactList> {
                           //debugPrint('Transferência recebida no then do Future $contactReturn');
                           setState(() =>
                           {
-                            debugPrint('recarregar! 0'),
+                            //debugPrint('recarregar! 0'),
                             //listContatos.add(contactReturn)
                           }
                           );
@@ -96,10 +96,10 @@ class _ContactListState extends State<ContactList> {
             futuro.then((contactReturn) {
               //debugPrint(contactReturn.toString());
               if(contactReturn != null) {
-                debugPrint('Transferência recebida no then do Future $contactReturn');
+                //debugPrint('Transferência recebida no then do Future $contactReturn');
                 setState(() =>
                 {
-                  debugPrint('recarregar! 0')
+                  //debugPrint('recarregar! 0')
                   //listContatos.add(contactReturn)
                 }
                 );
